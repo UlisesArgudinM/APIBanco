@@ -1,15 +1,10 @@
 package com.ibm.academia.respi.banco.servicios;
 
-import java.util.List;
-
 import com.ibm.academia.respi.banco.modelo.entidades.Tarjeta;
 
 public interface TarjetaDAO extends GenericoDAO<Tarjeta>
 {
 	public Iterable<Tarjeta>findAll();
-	public List<Tarjeta> findByTuPasion(String tuPasion);
-	public void delete(long id);
-	public boolean existsById(long id);
-	public boolean existsByTuPasion(String tuPasion);
-	public Tarjeta save(Tarjeta tarjeta);
+	public Iterable<Tarjeta>buscarTuTarjeta(String tuPasion,double monthlySalaryMin,double monthlySalaryMax,double ageMin,double ageMax);
+	public Tarjeta actualizar(Long tarjetaId, Tarjeta tarjeta);
 }

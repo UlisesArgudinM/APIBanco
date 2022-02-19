@@ -1,12 +1,13 @@
 package com.ibm.academia.respi.banco.modelo.entidades;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,11 +17,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="tarjetas",schema="banco")
-@AllArgsConstructor
 public class Tarjeta {
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id")
 	private long id;
 	
 	@Column(name = "tuPasion", nullable = false, length = 150)
@@ -62,6 +63,37 @@ public class Tarjeta {
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	public Tarjeta(long id, String tuPasion, double monthlySalaryMin, double monthlySalaryMax, double ageMin,
+			double ageMax, String creditCard) {
+		this.id = id;
+		this.tuPasion = tuPasion;
+		this.monthlySalaryMin = monthlySalaryMin;
+		this.monthlySalaryMax = monthlySalaryMax;
+		this.ageMin = ageMin;
+		this.ageMax = ageMax;
+		this.creditCard = creditCard;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, tuPasion);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Tarjeta))
+			return false;
+		Tarjeta other = (Tarjeta) obj;
+		return id == other.id && Objects.equals(tuPasion, other.tuPasion);
+	}
+
+
 
 	
 	

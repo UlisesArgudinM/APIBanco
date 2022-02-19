@@ -1,6 +1,7 @@
 package com.ibm.academia.respi.banco.servicios;
 
-import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.academia.respi.banco.modelo.entidades.Tarjeta;
 import com.ibm.academia.respi.banco.repositorio.TarjetaRepository;
+import com.ibm.academia.respi.banco.excepciones.NotFoundException;
 
 
 
@@ -22,46 +24,38 @@ public class TarjetaDAOImpl extends GenericoDAOImpl<Tarjeta, TarjetaRepository> 
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public Iterable<Tarjeta> findAll() {
 		
 		return repository.findAll();
 	}
 
 	@Override
-	@Transactional (readOnly = true)
-	public List<Tarjeta> findByTuPasion(String tuPasion) {
-		
-		return repository.findByTuPasion(tuPasion);
+	@Transactional(readOnly = true)
+	public Iterable<Tarjeta> buscarTuTarjeta(String tuPasion, double monthlySalaryMin, double monthlySalaryMax,
+			double ageMin, double ageMax) {
+		return repository.buscarTuTarjeta(tuPasion, monthlySalaryMin, monthlySalaryMax, ageMin, ageMax);
 	}
 
 	@Override
 	@Transactional
-	public void delete(long id) {
+	public Tarjeta actualizar(Long tarjetaId, Tarjeta tarjeta) 
+	{
+		Optional<Tarjeta> oTarjeta = repository.findById(tarjetaId);
 		
+		if(!oTarjeta.isPresent())
+			throw new NotFoundException(String.format("El plan de tarjetas con ID %d no existe", tarjetaId)); 
 		
+		Tarjeta tarjetaActualizada = null;
+		oTarjeta.get().setTuPasion(tarjeta.getCreditCard());
+		oTarjeta.get().setAgeMin(tarjeta.getAgeMin());
+		oTarjeta.get().setAgeMax(tarjeta.getAgeMax());
+		oTarjeta.get().setMonthlySalaryMin(tarjeta.getMonthlySalaryMin());
+		oTarjeta.get().setMonthlySalaryMax(tarjeta.getMonthlySalaryMax());
+		oTarjeta.get().setCreditCard(tarjeta.getCreditCard());
+		tarjetaActualizada = repository.save(oTarjeta.get());
+		return tarjetaActualizada;
 	}
-
-	@Override
-	@Transactional
-	public boolean existsById(long id) {
-		
-		return repository.existsById(id);
-	}
-
-	@Override
-	@Transactional
-	public boolean existsByTuPasion(String tuPasion) {
-		
-		return repository.existsByTuPasion(tuPasion);
-	}
-
-	@Override
-	public Tarjeta save(Tarjeta tarjeta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	}
 
