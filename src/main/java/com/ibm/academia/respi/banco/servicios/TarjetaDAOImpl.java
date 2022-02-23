@@ -47,12 +47,12 @@ public class TarjetaDAOImpl extends GenericoDAOImpl<Tarjeta, TarjetaRepository> 
 			throw new NotFoundException(String.format("El plan de tarjetas con ID %d no existe", tarjetaId)); 
 		
 		Tarjeta tarjetaActualizada = null;
-		oTarjeta.get().setTuPasion(tarjeta.getCreditCard());
-		oTarjeta.get().setAgeMin(tarjeta.getAgeMin());
-		oTarjeta.get().setAgeMax(tarjeta.getAgeMax());
-		oTarjeta.get().setMonthlySalaryMin(tarjeta.getMonthlySalaryMin());
-		oTarjeta.get().setMonthlySalaryMax(tarjeta.getMonthlySalaryMax());
-		oTarjeta.get().setCreditCard(tarjeta.getCreditCard());
+		oTarjeta.get().setTuPasion(tarjeta.getTarjetaCredito());
+		oTarjeta.get().setAnioMin(tarjeta.getAnioMin());
+		oTarjeta.get().setAnioMax(tarjeta.getAnioMax());
+		oTarjeta.get().setSalarioMensualMin(tarjeta.getSalarioMensualMin());
+		oTarjeta.get().setSalarioMensualMax(tarjeta.getSalarioMensualMax());
+		oTarjeta.get().setTarjetaCredito(tarjeta.getTarjetaCredito());
 		tarjetaActualizada = repository.save(oTarjeta.get());
 		return tarjetaActualizada;
 	}

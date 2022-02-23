@@ -8,12 +8,7 @@ public class TarjetaMapper
 	public static TarjetaDTO mapTarjeta(Tarjeta tarjeta)
 	{
 		TarjetaDTO tarjetaDTO = new TarjetaDTO();
-		tarjetaDTO.setTuPasion(tarjeta.getTuPasion());
-		tarjetaDTO.setAgeMin(tarjeta.getAgeMin());
-		tarjetaDTO.setAgeMax(tarjeta.getAgeMax());
-		tarjetaDTO.setMonthlySalaryMin(tarjeta.getMonthlySalaryMin());
-		tarjetaDTO.setMonthlySalaryMax(tarjeta.getMonthlySalaryMax());
-		tarjetaDTO.setCreditCard(tarjeta.getCreditCard());
+		tarjetaDTO.setTarjetaCredito(tarjeta.getTarjetaCredito());
 		return tarjetaDTO;
 	}
 }

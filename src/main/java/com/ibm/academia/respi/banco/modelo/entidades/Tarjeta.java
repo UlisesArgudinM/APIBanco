@@ -28,19 +28,19 @@ public class Tarjeta {
 	private String tuPasion;
 	
 	@Column(name = "salarioMensualMin", nullable = false)
-	private double monthlySalaryMin;
+	private double salarioMensualMin;
 	
 	@Column(name = "salarioMensualMax", nullable = false)
-	private double monthlySalaryMax;
+	private double salarioMensualMax;
 	
 	@Column(name = "anioMin", nullable = false)
-	private double ageMin;
+	private double anioMin;
 	
 	@Column(name = "anioMax", nullable = false)
-	private double ageMax;
+	private double anioMax;
 	
 	@Column(name = "tarjetaCredito", nullable = false, length = 150)
-	private String creditCard;
+	private String tarjetaCredito;
 
 	
 	@Override
@@ -50,31 +50,31 @@ public class Tarjeta {
 		builder.append(id);
 		builder.append(", tuPasion=");
 		builder.append(tuPasion);
-		builder.append(", monthlySalaryMin=");
-		builder.append(monthlySalaryMin);
-		builder.append(", monthlySalaryMax=");
-		builder.append(monthlySalaryMax);
-		builder.append(", ageMin=");
-		builder.append(ageMin);
-		builder.append(", ageMax=");
-		builder.append(ageMax);
-		builder.append(", creditCard=");
-		builder.append(creditCard);
+		builder.append(", salarioMensualMin=");
+		builder.append(salarioMensualMin);
+		builder.append(", salarioMensualMax=");
+		builder.append(salarioMensualMax);
+		builder.append(", anioMin=");
+		builder.append(anioMin);
+		builder.append(", anioMax=");
+		builder.append(anioMax);
+		builder.append(", tarjetaCredito=");
+		builder.append(tarjetaCredito);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-	public Tarjeta(long id, String tuPasion, double monthlySalaryMin, double monthlySalaryMax, double ageMin,
-			double ageMax, String creditCard) {
+	public Tarjeta(long id, String tuPasion, double salarioMensualMin, double salarioMensualMax, double anioMin,
+			double anioMax, String tarjetaCredito) {
 		this.id = id;
 		this.tuPasion = tuPasion;
-		this.monthlySalaryMin = monthlySalaryMin;
-		this.monthlySalaryMax = monthlySalaryMax;
-		this.ageMin = ageMin;
-		this.ageMax = ageMax;
-		this.creditCard = creditCard;
+		this.salarioMensualMin = salarioMensualMin;
+		this.salarioMensualMax = salarioMensualMax;
+		this.anioMin = anioMin;
+		this.anioMax = anioMax;
+		this.tarjetaCredito = tarjetaCredito;
 	}
-
+	
 
 
 	@Override
@@ -92,6 +92,16 @@ public class Tarjeta {
 		Tarjeta other = (Tarjeta) obj;
 		return id == other.id && Objects.equals(tuPasion, other.tuPasion);
 	}
+
+
+
+
+
+	
+
+
+
+	
 
 
 

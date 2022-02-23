@@ -11,12 +11,7 @@ public class TarjetaDTO implements Serializable
 {
 	
 	private Long tarjetaId;
-	private String tuPasion;
-	private double monthlySalaryMin;
-	private double monthlySalaryMax;
-	private double ageMin;
-	private double ageMax;
-	private String creditCard;
+	private String tarjetaCredito;
 	
 	private static final long serialVersionUID = -1434956835503150508L;
 
